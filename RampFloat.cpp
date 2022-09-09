@@ -1,12 +1,12 @@
 #include "RampFloat.h"
 
-float RampFloat::Step(float input, float Speed, bool Reset) {
+float RampFloat::Step(float Input, float Speed, bool Reset) {
 
   TempSpeed = (Speed * TaskPeriod); // net1
 
-  if (input > OldOutput) // net2
+  if (Input > OldOutput) // net2
   {
-    if ((OldOutput + TempSpeed) > input) {
+    if ((OldOutput + TempSpeed) > Input) {
       InputToHighLow = true;
     } else {
       Output = OldOutput + TempSpeed;
@@ -14,9 +14,9 @@ float RampFloat::Step(float input, float Speed, bool Reset) {
     }
     goto End;
   }
-  if ((input < OldOutput)) // net 3
+  if ((Input < OldOutput)) // net 3
   {
-    if ((OldOutput - TempSpeed) < input) {
+    if ((OldOutput - TempSpeed) < Input) {
       InputToHighLow = true;
     } else {
       Output = OldOutput - TempSpeed;
