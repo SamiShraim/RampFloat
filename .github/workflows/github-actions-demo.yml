@@ -17,14 +17,15 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This   job's status is ${{ job.status }}."
-      
+
   Changing-verion:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+      with:
+        fetch-depth: '0'
     - name: Get latest tag
       run: |
-        TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
-        echo "Latest tag is $TAG"
+        git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1) > latest-tag.txt
+        cat 'latest-tag.txt'
