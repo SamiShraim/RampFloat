@@ -6,8 +6,6 @@
           B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
           if [[ $B == "" ]]
           then
-            tag=$(git describe --tags --abbrev=0)
-            echo " this is it $tag "
             major="$(cut -d'.' -f1 <<<$A)"
             minor="$(cut -d'.' -f2 <<<$A)"
             patch="$(cut -d'.' -f3 <<<$A)"
@@ -19,7 +17,9 @@
             sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
             cat 'version.h'
           else
-              echo "Not the mps179 Release"
+            tag=$(git describe --tags --abbrev=0)
+            echo " this is it $tag "
+            echo "Not the mps179 Release"
           fi
 
 
