@@ -27,7 +27,7 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Getting-Release-Version
-        run: ./.github/scripts/changeversion.sh
+        run: sudo bash ./.github/scripts/changeversion.sh
 
 
 
