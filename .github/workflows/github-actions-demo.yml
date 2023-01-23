@@ -39,5 +39,6 @@ jobs:
           sed -i "/#define version_major/c\#define version_major 0x$major" version.h
           sed -i "/#define version_minor/c\#define version_minor 0x$minor" version.h
           sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
+          cat 'version.h'
 
 
