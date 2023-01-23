@@ -6,6 +6,8 @@
           B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
           if [[ $B == "" ]]
           then
+            tag=$(git describe --tags --abbrev=0)
+            echo " this is it $tag "
             major="$(cut -d'.' -f1 <<<$A)"
             minor="$(cut -d'.' -f2 <<<$A)"
             patch="$(cut -d'.' -f3 <<<$A)"
