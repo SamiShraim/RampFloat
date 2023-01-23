@@ -36,6 +36,12 @@ jobs:
           patch="$(cut -d'.' -f3 <<<$A)"
       - name: Change-version-file
         run: |
-          sed -i "/#define version_major/c\#define version_major 0x$major" ${{ github.workspace }}/version.h
-          sed -i "/#define version_minor/c\#define version_minor 0x$minor" ${{ github.workspace }}/version.h
-          sed -i "/#define version_patch/c\#define version_patch 0x$patch" ${{ github.workspace }}/version.h
+          sed -i "/#define version_major/c\#define version_major 0x$major" version.h
+          sed -i "/#define version_minor/c\#define version_minor 0x$minor" version.h
+          sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
+      - name: commit-push
+        run: |
+          git add .
+          git commit -m "Updating version"
+          git push origin HEAD
+          
