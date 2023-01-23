@@ -23,4 +23,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Dump GitHub context
-        run: echo " this is   ${{ github.event.release.tag_name }} "
+        run: echo " this is   ${{ github.event.tag_name }} "
