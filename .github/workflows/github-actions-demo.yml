@@ -27,5 +27,5 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1) > latest-tag.txt
-        cat 'latest-tag.txt'
+        Tag_name=`git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1)`
+        echo $Tag_name
