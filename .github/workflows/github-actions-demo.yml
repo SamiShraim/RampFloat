@@ -1,7 +1,9 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: 
-  push
+  push:
+  tags:
+    - 'v*.*.*'  
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -17,16 +19,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
-
-
-name: version-change
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: 
-  push:
-    tags:
-      - 'v*.*.*'
-jobs:
+      
   Changing-verion:
     runs-on: ubuntu-latest
     steps:
