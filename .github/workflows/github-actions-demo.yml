@@ -22,21 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set env
-        run: |
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "$RELEASE_VERSION"
       - name: Set the value
         id: step_one
         run: |
-          echo "FOO=$(git status)" >> $GITHUB_ENV
+          echo "FOO=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
       - name: Use the value
         id: step_two
         run: |
           echo "${{ env.FOO }}"
-      - name: Test
-        run: |
-          git tag
-          echo "the Release_version is  $GIT_TAG"
-          echo "the Release_version is $RELEASE_VERSION"
-          sudo bash ./.github/scripts/changeversion.sh ${RELEASE_VERSION}
