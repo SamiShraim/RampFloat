@@ -1,5 +1,4 @@
           echo "the Release_version is  ${RELEASE_VERSION} "
-          echo ${{ env.RELEASE_VERSION }}
           A="$(cut -d'-' -f2 <<<${RELEASE_VERSION})"
           B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
           major="$(cut -d'.' -f1 <<<$A)"
