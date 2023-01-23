@@ -27,9 +27,8 @@ jobs:
       - name: Set env
         run: |
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo $RELEASE_VERSION
       - name: Test
         run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
           echo "the Release_version is  $RELEASE_VERSION"
           sudo bash ./.github/scripts/changeversion.sh ${RELEASE_VERSION}
