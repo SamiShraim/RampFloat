@@ -1,5 +1,4 @@
           #!/bin/bash
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> "$GITHUB_ENV"
           echo "the Release_version is  ${RELEASE_VERSION} "
           A="$(cut -d'-' -f2 <<<${RELEASE_VERSION})"
           B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
