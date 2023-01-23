@@ -35,7 +35,6 @@ jobs:
           minor="$(cut -d'.' -f2 <<<$A)"
           patch="$(cut -d'.' -f3 <<<$A)"
       - name: Change-version-file
-      - uses: actions/checkout@v2
         run: |
           sed -i "/#define version_major/c\#define version_major 0x$major" ${{ github.workspace }}/version.h
           sed -i "/#define version_minor/c\#define version_minor 0x$minor" ${{ github.workspace }}/version.h
