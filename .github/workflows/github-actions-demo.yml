@@ -45,5 +45,5 @@ jobs:
           git config --local user.email "sami.shraim@brunvoll.no" 
           git add .
           git commit -m "Updating version"
-          git push origin HEAD
+          git push origin main
 
