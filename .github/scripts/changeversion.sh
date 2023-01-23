@@ -1,5 +1,6 @@
           #!/bin/bash
-          echo "the Release_version is  $1"
+       
+          echo "the Release_version is  $1 "
           RELEASE_VERSION=$1
           A="$(cut -d'-' -f2 <<<${RELEASE_VERSION})"
           B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
