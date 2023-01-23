@@ -30,6 +30,7 @@ jobs:
         run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
       - name: Test
         run: |
+          git tag
           echo "the Release_version is  $GIT_TAG"
           echo "the Release_version is $RELEASE_VERSION"
           sudo bash ./.github/scripts/changeversion.sh ${RELEASE_VERSION}
