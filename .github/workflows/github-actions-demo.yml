@@ -39,13 +39,5 @@ jobs:
           sed -i "/#define version_major/c\#define version_major 0x$major" version.h
           sed -i "/#define version_minor/c\#define version_minor 0x$minor" version.h
           sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
-      - name: commit-push
-        run: |
-          git config user.email "sami.shraim@brunvoll.no"
-          git config user.name "ci-bot"
-          git remote add gitlab_origin https://oauth2:$ACCESS_TOKEN@gitlab.com/SamiShraim/RampFloat.git
-          git add .
-          git commit -m "push back from pipeline"
-          git push gitlab_origin HEAD:main -o ci.skip 
 
 
