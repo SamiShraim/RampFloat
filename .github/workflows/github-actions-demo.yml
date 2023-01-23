@@ -23,7 +23,7 @@ jobs:
   Changing-verion:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Getting-Release-Version
@@ -41,9 +41,11 @@ jobs:
           sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
       - name: commit-push
         run: |
-          git config --local user.name "SamiShraim"
-          git config --local user.email "sami.shraim@brunvoll.no" 
-          git add .
-          git commit -m "Updating version"
-          git push origin HEAD:$CI_COMMIT_REF_NAME
+          - git config user.email "sami.shraim@brunvoll.no"
+          - git config user.name "ci-bot"
+          - git remote add gitlab_origin https://oauth2:$ACCESS_TOKEN@gitlab.com/SamiShraim/RampFloat.git
+          - git add .
+          - git commit -m "push back from pipeline"
+          - git push gitlab_origin HEAD:main -o ci.skip 
+
 
