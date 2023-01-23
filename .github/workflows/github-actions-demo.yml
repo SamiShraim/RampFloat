@@ -22,5 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        run: echo " this is   ${{ github.event.tag_name }} "
+    - name: Get latest tag
+      run: |
+        TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
+        echo "Latest tag is $TAG"
