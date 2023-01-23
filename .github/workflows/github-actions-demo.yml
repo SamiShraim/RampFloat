@@ -29,4 +29,6 @@ jobs:
       - name: Test
         run: |
           echo "the Release_version is  $RELEASE_VERSION"
+          tag=$(git describe --tags --abbrev=0)
+          echo " this is it $tag "
           sudo bash ./.github/scripts/changeversion.sh ${RELEASE_VERSION}

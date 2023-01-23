@@ -17,8 +17,6 @@
             sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
             cat 'version.h'
           else
-            tag=$(git describe --tags --abbrev=0)
-            echo " this is it $tag "
             echo "Not the mps179 Release"
           fi
 
