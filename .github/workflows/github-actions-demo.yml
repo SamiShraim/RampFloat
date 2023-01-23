@@ -41,7 +41,9 @@ jobs:
           sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
       - name: commit-push
         run: |
+          git config --local user.name "SamiShraim"
+          git config --local user.email "sami.shraim@brunvoll.no" 
           git add .
           git commit -m "Updating version"
           git push origin HEAD
-          
+
