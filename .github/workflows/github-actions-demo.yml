@@ -26,8 +26,14 @@ jobs:
         run: |
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           echo "$RELEASE_VERSION"
-      - name: Create tag artifact
-        run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.FOO }}"
       - name: Test
         run: |
           git tag
