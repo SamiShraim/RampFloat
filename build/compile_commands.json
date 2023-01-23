@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/user1/RampFloat/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/unitTestRunner.dir/testrunner.cpp.o -c /home/user1/RampFloat/testrunner.cpp",
+  "file": "/home/user1/RampFloat/testrunner.cpp"
+},
+{
+  "directory": "/home/user1/RampFloat/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/mainApp.dir/main.cpp.o -c /home/user1/RampFloat/main.cpp",
+  "file": "/home/user1/RampFloat/main.cpp"
+},
+{
+  "directory": "/home/user1/RampFloat/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/commonLibrary.dir/RampFloat.cpp.o -c /home/user1/RampFloat/RampFloat.cpp",
+  "file": "/home/user1/RampFloat/RampFloat.cpp"
+}
+]

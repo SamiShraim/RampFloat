@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/user1/RampFloat/RampFloat.cpp
+RampFloat.h
+/home/user1/RampFloat/RampFloat.h
+
+/home/user1/RampFloat/RampFloat.h
+
+/home/user1/RampFloat/testrunner.cpp
+RampFloat.cpp
+/home/user1/RampFloat/RampFloat.cpp
+gtest/gtest.h
+-
+iostream
+-
+

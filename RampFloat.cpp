@@ -27,7 +27,7 @@ float RampFloat::Step(float Input, float Speed, bool Reset) {
 End:
   if (InputToHighLow || Reset) // net 4
   {
-    Output = input;
+    Output = Input;
   }
   OldOutput = Output; // net 5
 

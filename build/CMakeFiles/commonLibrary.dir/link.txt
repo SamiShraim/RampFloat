@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcommonLibrary.a  CMakeFiles/commonLibrary.dir/RampFloat.cpp.o
+/usr/bin/ranlib libcommonLibrary.a
