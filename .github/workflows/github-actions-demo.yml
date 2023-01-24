@@ -29,4 +29,5 @@ jobs:
       run: |
         Tag_name=`git tag -l | grep -v 'display' | grep -w 'mps179' | sort -V | tail -n 1`
         echo $Tag_name
-        sudo bash ./.github/scripts/changeversion.sh ${Tag_name}
+        Current_Tag_name=`git describe --tags --abbrev=0 | grep -E 'mps179' | grep -v 'display'`
+        sudo bash ./.github/scripts/changeversion.sh ${Tag_name} ${Current_Tag_name}

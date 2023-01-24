@@ -1,10 +1,10 @@
           #!/bin/bash
        
-          echo "the Release_version is  $1 "
+          echo "the latest tag is  $1"
+          echo "the Current commit tag is  $2"
           RELEASE_VERSION=$1
           A="$(cut -d'-' -f2 <<<${RELEASE_VERSION})"
-          B="$(cut -d'-' -f3 <<<${RELEASE_VERSION})"
-          if [[ $B == "" ]]
+          if [[ $2 == $1 ]]
           then
             major="$(cut -d'.' -f1 <<<$A)"
             minor="$(cut -d'.' -f2 <<<$A)"
@@ -17,7 +17,8 @@
             sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
             cat 'version.h'
           else
-            echo "Not the mps179 Release"
+            sed -i '5a #define version_dirty 0x01\' version.h
+            cat 'version.h'
           fi
 
 
