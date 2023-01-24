@@ -27,6 +27,7 @@ jobs:
       PATH_TO_UCPROJECT: ${{ matrix.project }}
       BUILDTYPE: Debug
       PROJECT: ARMTest
+      REPO_PATH: ${{github.workspace}}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -34,4 +35,4 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        powershell -file /home/user1/RampFloat/tools/embedded/script.ps1 ${Env:PATH_TO_UCPROJECT}
+        powershell -file /tools/embedded/script.ps1 ${{ env.REPO_PATH }}
