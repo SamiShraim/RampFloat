@@ -10,7 +10,6 @@
           else
             RELEASE_VERSION=$B
             sed -i '5a #define version_dirty 0x01\' version.h
-            cat 'version.h'
           fi
           major="$(cut -d'.' -f1 <<<$RELEASE_VERSION)"
           minor="$(cut -d'.' -f2 <<<$RELEASE_VERSION)"
