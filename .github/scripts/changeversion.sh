@@ -1,5 +1,4 @@
           #!/bin/bash
-       
           echo "the latest tag is  $1"
           echo "the Current commit tag is  $2"
           A="$(cut -d'-' -f2 <<<$1)"
@@ -21,5 +20,3 @@
           sed -i "/#define version_minor/c\#define version_minor 0x$minor" version.h
           sed -i "/#define version_patch/c\#define version_patch 0x$patch" version.h
           cat 'version.h'
-
-

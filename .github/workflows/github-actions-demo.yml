@@ -19,7 +19,14 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
   Changing-verion:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        project: [mps170/apps/]
+    env:
+      PATH_TO_UCPROJECT: ${{ matrix.project }}
+      BUILDTYPE: Debug
+      PROJECT: ARMTest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -30,4 +37,4 @@ jobs:
         Tag_name=`git tag -l | grep -v 'display' | grep -w 'mps179' | sort -V | tail -n 1`
         echo $Tag_name
         Current_Tag_name=`git describe --tags --abbrev=0 | grep -E 'mps179' | grep -v 'display'`
-        sudo bash ./.github/scripts/changeversion.sh ${Tag_name} ${Current_Tag_name}
+        pwsh /tools/embedded/script.ps1 $Tag_name $Current_Tag_name ${Env:PATH_TO_UCPROJECT}
