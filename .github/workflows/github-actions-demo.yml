@@ -34,4 +34,4 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        pwsh /tools/embedded/script.ps1 ${Env:PATH_TO_UCPROJECT}
+        powershell -file /tools/embedded/script.ps1 ${Env:PATH_TO_UCPROJECT}
