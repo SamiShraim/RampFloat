@@ -19,7 +19,9 @@ if ($currentCommitTag -eq $tag_name) {
     $RELEASE_VERSION = $A
 } else {
     $RELEASE_VERSION = $B
-    Add-Content -Path $include -Value "#define version_dirty 0x01" -Insert (5)
+    $lines = Get-Content -Path $include
+    $lines[5] = "#define version_dirty 0x01"
+    $lines | Set-Content -Path $include
 }
 
 $major, $minor, $patch = $RELEASE_VERSION -split '.'
