@@ -1,7 +1,7 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is totally awesome 🚀
 on: 
-  push  
+  push
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -16,10 +16,18 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🍏 This   job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
 
   Changing-verion:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        project: [mps170/apps/]
+    env:
+      PATH_TO_UCPROJECT: ${{ matrix.project }}
+      BUILDTYPE: Debug
+      PROJECT: ARMTest
+      REPO_PATH: ${{github.workspace}}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -27,7 +35,4 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        Tag_name=`git tag -l | grep -v 'display' | grep -w 'mps179' | sort -V | tail -n 1`
-        echo $Tag_name
-        Current_Tag_name=`git describe --tags --abbrev=0 | grep -E 'mps179' | grep -v 'display'`
-        sudo bash ./.github/scripts/changeversion.sh ${Tag_name} ${Current_Tag_name}
+        powershell -file ${{ env.REPO_PATH }}/tools/embedded/script.ps1 ${{ env.REPO_PATH }}
