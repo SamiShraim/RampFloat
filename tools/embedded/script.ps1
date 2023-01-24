@@ -5,11 +5,12 @@ $tag_name = (git tag -l | Select-String -Pattern 'mps179'| Select-String -Patter
 
 Write-Output $tag_name
 
+$current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179'| Select-String -Pattern 'display' -NotMatch).Line
+Write-Output $current_tag_name
+
+
+
 Write-Host "the latest tag is $gitTags"
 Write-Host "the Current path is $Paths"
 
 cat $include
-
-
-
-
