@@ -30,9 +30,10 @@ $major = "{0:X}" -f $major
 $minor = "{0:X}" -f $minor
 $patch = "{0:X}" -f $patch
 
-(Get-Content -Path $include) | ForEach-Object {
-    $_ -replace "#define version_major.*","#define version_major 0x$major"
-    $_ -replace "#define version_minor.*","#define version_minor 0x$minor"
-    $_ -replace "#define version_patch.*","#define version_patch 0x$patch"
-} | Set-Content -Path $include
+$lines = Get-Content -Path $include
+$lines[3] = "#define version_major 0x$major"
+$lines[4] = "#define version_minor 0x$minor"
+$lines[5] = "#define version_patch 0x$patch"
+$lines | Set-Content -Path $include
+
 cat $include
