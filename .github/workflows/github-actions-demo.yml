@@ -27,6 +27,6 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        Tag_name=`git describe --abbrev=0 --tags`
+        Tag_name=`git tag -l | grep -v 'display' | grep -w 'mps179' | sort -V | tail -n 1`
         echo $Tag_name
         sudo bash ./.github/scripts/changeversion.sh ${Tag_name}
