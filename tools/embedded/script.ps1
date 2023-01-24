@@ -4,4 +4,4 @@ $gitTags = git tag -l
 Write-Host "the latest tag is $gitTags"
 Write-Host "the Current path is $Paths"
 
-cat '$Paths/mps170/apps/version.h'
+cat '/mps170/apps/version.h'
