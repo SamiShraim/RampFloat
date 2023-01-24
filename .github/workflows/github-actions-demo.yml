@@ -34,8 +34,4 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        $tag_name = (git tag -l | Select-String -Pattern 'mps179' -NotMatch 'display' | Sort-Object -Property Version | Select-Object -Last 1).Line
-        Write-Output $Tag_name
-        $current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179' -NotMatch 'display').Line
-        Write-Output $current_tag_name
-        pwsh /tools/embedded/script.ps1 $Tag_name $Current_Tag_name ${Env:PATH_TO_UCPROJECT}
+        pwsh /tools/embedded/script.ps1 ${Env:PATH_TO_UCPROJECT}

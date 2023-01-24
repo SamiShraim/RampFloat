@@ -1,7 +1,12 @@
-param($latestTag, $currentCommitTag, $Paths)
+param($Paths)
 
-Write-Host "the latest tag is $latestTag"
-Write-Host "the Current commit tag is $currentCommitTag"
+$tag_name = (git tag -l | Select-String -Pattern 'mps179' -NotMatch 'display' | Sort-Object -Property Version | Select-Object -Last 1).Line
+Write-Output $Tag_name
+$current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179' -NotMatch 'display').Line
+Write-Output $current_tag_name
+
+Write-Host "the latest tag is $Tag_name"
+Write-Host "the Current commit tag is $current_tag_name"
 Write-Host "the Current path is $Paths"
 
 $A = ($latestTag -split '-')[1]
