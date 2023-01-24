@@ -34,7 +34,8 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        Tag_name=`git tag -l | grep -v 'display' | grep -w 'mps179' | sort -V | tail -n 1`
-        echo $Tag_name
-        Current_Tag_name=`git describe --tags --abbrev=0 | grep -E 'mps179' | grep -v 'display'`
+        $tag_name = (git tag -l | Select-String -Pattern 'mps179' -NotMatch 'display' | Sort-Object -Property Version | Select-Object -Last 1).Line
+        Write-Output $Tag_name
+        $current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179' -NotMatch 'display').Line
+        Write-Output $current_tag_name
         pwsh /tools/embedded/script.ps1 $Tag_name $Current_Tag_name ${Env:PATH_TO_UCPROJECT}
