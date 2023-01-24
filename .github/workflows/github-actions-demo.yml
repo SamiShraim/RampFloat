@@ -35,4 +35,4 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
-        powershell -file /tools/embedded/script.ps1 ${{ env.REPO_PATH }}
+        powershell -file ${{ env.REPO_PATH }}/tools/embedded/script.ps1 ${{ env.REPO_PATH }}
