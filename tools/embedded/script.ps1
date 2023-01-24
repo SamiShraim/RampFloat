@@ -1,34 +1,7 @@
 param($Paths)
+$gitTags = git tag -l
 
-$tag_name = (git tag -l | Select-String -Pattern 'mps179' -NotMatch 'display' | Sort-Object -Property Version | Select-Object -Last 1).Line
-Write-Output $Tag_name
-$current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179' -NotMatch 'display').Line
-Write-Output $current_tag_name
-
-Write-Host "the latest tag is $Tag_name"
-Write-Host "the Current commit tag is $current_tag_name"
+Write-Host "the latest tag is $gitTags"
 Write-Host "the Current path is $Paths"
 
-$A = ($latestTag -split '-')[1]
-$B = ($currentCommitTag -split '-')[1]
-
-if ($currentCommitTag -eq $latestTag) {
-    $RELEASE_VERSION = $A
-} else {
-    $RELEASE_VERSION = $B
-    Add-Content -Path "$Paths/version.h" -Value "#define version_dirty 0x01"
-}
-
-$major, $minor, $patch = $RELEASE_VERSION -split '.'
-
-$major = "{0:X}" -f $major
-$minor = "{0:X}" -f $minor
-$patch = "{0:X}" -f $patch
-
-(Get-Content -Path "$Paths/version.h") | ForEach-Object {
-    $_ -replace "#define version_major.*","#define version_major 0x$major"
-    $_ -replace "#define version_minor.*","#define version_minor 0x$minor"
-    $_ -replace "#define version_patch.*","#define version_patch 0x$patch"
-} | Set-Content -Path "$Paths/version.h"
-
-cat '$Paths/version.h'
+cat '$Paths/mps170/apps/version.h'
