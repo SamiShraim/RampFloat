@@ -34,7 +34,6 @@ $patch = "{0:X}" -f $patch
     $_ -replace "#define version_major.*","#define version_major 0x$major"
     $_ -replace "#define version_minor.*","#define version_minor 0x$minor"
     $_ -replace "#define version_patch.*","#define version_patch 0x$patch"
-} | Set-Content -Path "$Paths/version.h"
+} | Set-Content -Path $include
 
-cat '$Paths/version.h'
 cat $include
