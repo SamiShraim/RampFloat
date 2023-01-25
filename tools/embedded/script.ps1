@@ -24,13 +24,13 @@ if ($currentCommitTag -eq $tag_name) {
     $lines | Set-Content -Path $include
 }
 
-$major, $minor, $patch = $RELEASE_VERSION -split '.'
+$major, $minor, $patch = $RELEASE_VERSION -split '[.]'
 
 $major = '{0:X}' -f $major
 $minor = '{0:X}' -f $minor
 $patch = '{0:X}' -f $patch
 
-Write-Host " major $major"
+Write-Host "major $major"
 Write-Host "minor  $minor"
 Write-Host "patch  $patch"
 
