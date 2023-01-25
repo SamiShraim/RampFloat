@@ -20,20 +20,20 @@ if ($currentCommitTag -eq $tag_name) {
 } else {
     $RELEASE_VERSION = $B
     $lines = Get-Content -Path $include
-    $lines[6] = "#define version_dirty 0x01"
+    $lines[5] = "#define version_dirty 0x01"
     $lines | Set-Content -Path $include
 }
 
 $major, $minor, $patch = $RELEASE_VERSION -split '.'
 
-$major = "{0:X}" -f $major
-$minor = "{0:X}" -f $minor
-$patch = "{0:X}" -f $patch
+$major = '{0:X}' -f $major
+$minor = '{0:X}' -f $minor
+$patch = '{0:X}' -f $patch
 
 $lines = Get-Content -Path $include
-$lines[3] = "#define version_major 0x$major"
-$lines[4] = "#define version_minor 0x$minor"
-$lines[5] = "#define version_patch 0x$patch"
+$lines[2] = "#define version_major 0x$major"
+$lines[3] = "#define version_minor 0x$minor"
+$lines[4] = "#define version_patch 0x$patch"
 $lines | Set-Content -Path $include
 
 cat $include
