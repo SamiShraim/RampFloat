@@ -20,7 +20,7 @@ if ($currentCommitTag -eq $tag_name) {
 } else {
     $RELEASE_VERSION = $B
     $lines = Get-Content -Path $include
-    $lines[5] = "#define version_dirty 0x01" + `n
+    $lines[5] = "#define version_dirty 0x01"`n
     $lines | Set-Content -Path $include
 }
 
