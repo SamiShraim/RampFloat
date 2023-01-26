@@ -15,7 +15,7 @@ Write-Host "the Current path is $Paths"
 $A = ($tag_name -split '-')[1]
 $B = ($current_tag_name -split '-')[1]
 
-if ($currentCommitTag -eq $tag_name) {
+if ($current_tag_name -eq $tag_name) {
     $RELEASE_VERSION = $A
 } else {
     $RELEASE_VERSION = $B
