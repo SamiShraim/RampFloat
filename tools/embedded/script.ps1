@@ -1,8 +1,8 @@
 param($Paths)
 $include= "$Paths/mps170/apps/version.h"
-git tag -l
-$tag_name = (git tag -l | Select-String -Pattern 'mps179'| Select-String -Pattern 'display' -NotMatch | Sort-Object -Descending | Select-Object -First 1).Line
-$current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179'| Select-String -Pattern 'display' -NotMatch).Line
+
+$tag_name = (git tag -l | Select-String -Pattern 'mps179-\d*[.]\d*[.]\d*' | Sort-Object -Descending | Select-Object -First 1).Line
+$current_tag_name = (git describe --tags --abbrev=0 | Select-String -Pattern 'mps179-\d*[.]\d*[.]\d*').Line
 
 Write-Host "the latest tag is $tag_name"
 Write-Host "the Current commit tag is $current_tag_name"
