@@ -34,4 +34,6 @@ jobs:
         fetch-depth: '0'
     - name: Get latest tag
       run: |
+        echo " matrix is ${{ matrix.project }} "
+        echo " repo_path is ${{ env.REPO_PATH }} "
         powershell -file ${{ env.REPO_PATH }}/tools/embedded/script.ps1 ${{ env.REPO_PATH }}
