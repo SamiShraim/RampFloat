@@ -26,5 +26,5 @@ jobs:
           TAG_NAME="${{ github.ref#refs/tags/ }}"
           echo "tag_name is $TAG_NAME"
         else
-          echo "No tag present"
+          echo "No tag present "
         fi
