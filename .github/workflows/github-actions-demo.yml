@@ -25,13 +25,12 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/ptc* ]]; then
             githubRef=${{ github.ref }}
             prefix="refs/tags/"
-            TAG_NAME=${githubRef#$prefix}
             echo "TAG_NAME=${githubRef#$prefix}" >> $GITHUB_ENV
           else
-            TAG_NAME='latest'
             echo "TAG_NAME='latest'" >> $GITHUB_ENV
           fi
-          echo "tag is $TAG_NAME"
+        run: |
+          echo "tag is ${{ env.TAG_NAME }}"
       - name: Lets get the env var
         run: |
           echo ${{ env.TAG_NAME }}
