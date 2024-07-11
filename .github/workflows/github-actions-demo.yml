@@ -23,8 +23,8 @@ jobs:
       run: |
         echo "event_name is ${{ github.event_name }} base_ref is ${{ github.base_ref }} ref is ${{ github.ref }}"
         if [[ "${{ github.ref }}" == refs/tags/* ]]; then
-          TAG_NAME="${{ github.ref#refs/tags/ }}"
+          TAG_NAME="${{ github.ref/refs\/tags\// }}"
           echo "tag_name is $TAG_NAME"
         else
-          echo "No tag present "
+          echo "No tag present"
         fi
