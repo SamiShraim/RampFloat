@@ -29,7 +29,7 @@ jobs:
           else
             echo "TAG_NAME='latest'" >> $GITHUB_ENV
           fi
-          echo "tag is ${{ env.TAG_NAME }}"
+          echo "tag is $TAG_NAME"
       - name: Lets get the env var
         run: |
           echo ${{ env.TAG_NAME }}
