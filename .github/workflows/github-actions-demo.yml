@@ -15,16 +15,20 @@ jobs:
   build_project:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: '0'
-    - name: Echo environment variables
-      run: |
-        echo "event_name is ${{ github.event_name }} base_ref is ${{ github.base_ref }} ref is ${{ github.ref }}"
-        if [[ "${{ github.ref }}" == refs/tags/* ]]; then
-          TAG_NAME="${{ github.ref/refs\/tags\// }}"
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+      - name: Echo event and ref
+        run: |
+          echo "event_name is ${{ github.event_name }} base_ref is ${{ github.base_ref }} ref is ${{ github.ref }}"
+      - name: Extract and echo tag name
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          Reff=${{ github.ref }}
+          prefix="refs/tags/"
+          TAG_NAME=${Reff#$prefix}
           echo "tag_name is $TAG_NAME"
-        else
-          echo "No tag present"
-        fi
+      - name: No tag present
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: echo "No tag present"
