@@ -29,7 +29,13 @@ jobs:
           else
             echo "TAG_NAME='latest'" >> $GITHUB_ENV
           fi
-        run: |
+          if [[ "${{ github.ref }}" =~ ^refs/heads/ptc/[0-9]+\.[0-9]+$ ]]; then
+            echo "it is ${{ github.ref }}" 
+            echo "TAG_NAME=${github.base_ref" >> $GITHUB_ENV
+          else
+            echo "it is Not ${{ github.ref }}" 
+            echo "TAG_NAME='latest'" >> $GITHUB_ENV
+          fi
           echo "tag is ${{ env.TAG_NAME }}"
       - name: Lets get the env var
         run: |
