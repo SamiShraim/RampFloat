@@ -36,7 +36,6 @@ jobs:
             echo "it is Not ${{ github.ref }}" 
             echo "TAG_NAME='latest'" >> $GITHUB_ENV
           fi
-        run: |
           echo "tag is ${{ env.TAG_NAME }}"
       - name: Lets get the env var
         run: |
