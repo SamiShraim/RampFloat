@@ -31,8 +31,10 @@ jobs:
           # Extract version number based on ref type
           if [[ "$ref" =~ ^$branch_prefix([0-9]+\.[0-9]+)$ ]]; then
             TAG_NAME="${BASH_REMATCH[1]}"
-          elif [[ "$ref" =~ ^$tag_prefix([0-9]+\.[0-9]+)$ ]]; then
-            TAG_NAME="${BASH_REMATCH[1]}"
+          elif [[ "$ref" == refs/tags/ptc* ]]; then
+            githubRef=${{ github.ref }}
+            prefix="refs/tags/"
+            TAG_NAME=${githubRef#$prefix}
           fi
           # Output the TAG_NAME variable to GitHub Actions environment
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
