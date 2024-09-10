@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/github-actions-demo.yml'
       - 'main.cpp'
-      - 'tools\embedded\script.ps1'
+      - 'tools/embedded/script.ps1'
     tags:
       - 'ptc/*'
   pull_request:
