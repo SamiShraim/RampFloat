@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - '.github/workflows/github-actions-demo.yml'
+      - '*'
   pull_request:
     paths:
       - '.github/workflows/github-actions-demo.yml'
+      - '*'
 jobs:
   build_project:
     runs-on: ubuntu-latest
