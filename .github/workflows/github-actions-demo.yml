@@ -37,6 +37,7 @@ jobs:
             TAG_NAME=${githubRef#$prefix}
           fi
           # Output the TAG_NAME variable to GitHub Actions environment
+          TAG_NAME=$(echo "$TAG_NAME" | sed 's/\//-/g')
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           echo "tag is $TAG_NAME"
       - name: Lets get the env var
