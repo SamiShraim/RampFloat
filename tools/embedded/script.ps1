@@ -10,6 +10,7 @@ Write-Output $current_tag_name
 Write-Host "the latest tag is $tag_name"
 Write-Host "the Current commit tag is $current_tag_name"
 Write-Host "the Current path is $Paths"
+Add-VMHostAssignableDevice
 
 
 $A = ($tag_name -split '-')[1]
