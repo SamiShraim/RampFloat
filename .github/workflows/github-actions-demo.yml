@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - '.github/workflows/github-actions-demo.yml'
+      - 'main.cpp'
+      - 'tools\embedded\script.ps1'
     tags:
       - 'ptc/*'
   pull_request:
@@ -35,6 +37,8 @@ jobs:
             githubRef=${{ github.ref }}
             prefix="refs/tags/"
             TAG_NAME=${githubRef#$prefix}
+            VERSION=${githubRef#refs/tags/ptc/}
+            echo "$VERSION"
           fi
           # Output the TAG_NAME variable to GitHub Actions environment
           TAG_NAME=$(echo "$TAG_NAME" | sed 's/\//-/g')
