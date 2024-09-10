@@ -11,6 +11,7 @@ Write-Host "the latest tag is $tag_name"
 Write-Host "the Current commit tag is $current_tag_name"
 Write-Host "the Current path is $Paths"
 
+
 $A = ($tag_name -split '-')[1]
 $B = ($current_tag_name -split '-')[1]
 
