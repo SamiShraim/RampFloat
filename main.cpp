@@ -9,6 +9,5 @@ int main(int argc, char **argv) {
   ramp11.Step(50.0, 40.0, false);
   ramp11.Step(50.0, 20.0, false);
   std::cout << ramp11.Step(50.0, 30.0, false);
-
   return 0;
 }
