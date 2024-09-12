@@ -5,6 +5,10 @@ on:
   push:
     paths:
       - '.github/workflows/github-actions-demo.yml'
+      - 'main.cpp'
+      - 'tools/embedded/script.ps1'
+    tags:
+      - 'ptc/*'
   pull_request:
     paths:
       - '.github/workflows/github-actions-demo.yml'
@@ -29,18 +33,24 @@ jobs:
           # Extract version number based on ref type
           if [[ "$ref" =~ ^$branch_prefix([0-9]+\.[0-9]+)$ ]]; then
             TAG_NAME="${BASH_REMATCH[1]}"
-          elif [[ "$ref" =~ ^$tag_prefix([0-9]+\.[0-9]+)$ ]]; then
-            TAG_NAME="${BASH_REMATCH[1]}"
+          elif [[ "$ref" == refs/tags/ptc* ]]; then
+            githubRef=${{ github.ref }}
+            prefix="refs/tags/"
+            TAG_NAME=${githubRef#$prefix}
+            VERSION=${githubRef#refs/tags/ptc/}
+            echo "$VERSION"
           fi
-
           # Output the TAG_NAME variable to GitHub Actions environment
+          TAG_NAME=$(echo "$TAG_NAME" | sed 's/\//-/g')
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           echo "tag is $TAG_NAME"
-
       - name: Lets get the env var
         run: |
           echo ${{ env.TAG_NAME }}
           echo "tag is ${{ env.TAG_NAME }}"
-      - name: No tag present
-        if: "!startsWith(github.ref, 'refs/tags/')"
-        run: echo "No tag present"
+
+      - name: Push Docker image to github
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker build -t ghcr.io/samishraim/ramprloat/runner:${{ env.TAG_NAME }} .
+          docker push ghcr.io/samishraim/ramprloat/runner:${{ env.TAG_NAME }}
