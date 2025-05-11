@@ -7,6 +7,9 @@ on:
       - '.github/workflows/github-actions-demo.yml'
       - 'main.cpp'
       - 'tools/embedded/script.ps1'
+    # This will prevent the workflow from running on release tags
+    branches-ignore:
+      - 'refs/tags/*'
   pull_request:
     paths:
       - '.github/workflows/github-actions-demo.yml'
