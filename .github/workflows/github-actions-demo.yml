@@ -7,14 +7,14 @@ on:
       - '.github/workflows/github-actions-demo.yml'
       - 'main.cpp'
       - 'tools/embedded/script.ps1'
-    # This will prevent the workflow from running on release tags
-    branches-ignore:
-      - 'refs/tags/*'
   pull_request:
     paths:
       - '.github/workflows/github-actions-demo.yml'
 jobs:
   build_project:
+    if: |
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' && github.base_ref == 'main')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
